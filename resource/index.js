@@ -48,16 +48,16 @@
 	var style = __webpack_require__(1);
 
 	// 引入依赖
-	var Vue = __webpack_require__(5);
-	var VueRouter = __webpack_require__(7);
-	var VueResource = __webpack_require__(8);
+	var Vue = __webpack_require__(6);
+	var VueRouter = __webpack_require__(8);
+	var VueResource = __webpack_require__(9);
 
 	// 使用插件
 	Vue.use(VueRouter);
 	Vue.use(VueResource);
 
 	// 调用组件
-	var header = __webpack_require__(32);
+	var header = __webpack_require__(33);
 	Vue.component('my-header', header)
 
 
@@ -147,7 +147,7 @@
 	var content = __webpack_require__(2);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
+	var update = __webpack_require__(5)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -172,7 +172,7 @@
 	exports.push([module.id, "@import url(http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css);", ""]);
 
 	// module
-	exports.push([module.id, "body {\n  background: -webkit-linear-gradient(bottom left, #ccc, #fff);\n}\n.color-red {\n  color: red;\n}\n", ""]);
+	exports.push([module.id, "body {\n  background: -webkit-linear-gradient(bottom left, #ccc, #fff);\n}\n#content {\n  background: url(" + __webpack_require__(4) + ") repeat-x;\n}\n.color-red {\n  color: red;\n}\n", ""]);
 
 	// exports
 
@@ -235,6 +235,12 @@
 
 /***/ },
 /* 4 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,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"
+
+/***/ },
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -486,7 +492,7 @@
 
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global, process) {/*!
@@ -10412,10 +10418,10 @@
 	}, 0);
 
 	module.exports = Vue;
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(6)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(7)))
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports) {
 
 	// shim for using process in browser
@@ -10512,7 +10518,7 @@
 
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -13226,7 +13232,7 @@
 	}));
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -13235,16 +13241,16 @@
 
 	function install(Vue) {
 
-	    var _ = __webpack_require__(9);
+	    var _ = __webpack_require__(10);
 
 	    _.config = Vue.config;
 	    _.warning = Vue.util.warn;
 	    _.nextTick = Vue.util.nextTick;
 
-	    Vue.url = __webpack_require__(10);
-	    Vue.http = __webpack_require__(16);
-	    Vue.resource = __webpack_require__(31);
-	    Vue.Promise = __webpack_require__(18);
+	    Vue.url = __webpack_require__(11);
+	    Vue.http = __webpack_require__(17);
+	    Vue.resource = __webpack_require__(32);
+	    Vue.Promise = __webpack_require__(19);
 
 	    Object.defineProperties(Vue.prototype, {
 
@@ -13285,7 +13291,7 @@
 
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports) {
 
 	/**
@@ -13413,14 +13419,14 @@
 
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for URL templating.
 	 */
 
-	var _ = __webpack_require__(9);
+	var _ = __webpack_require__(10);
 	var ie = document.documentMode;
 	var el = document.createElement('a');
 
@@ -13456,10 +13462,10 @@
 	 */
 
 	Url.transforms = [
-	    __webpack_require__(11),
-	    __webpack_require__(13),
+	    __webpack_require__(12),
 	    __webpack_require__(14),
-	    __webpack_require__(15)
+	    __webpack_require__(15),
+	    __webpack_require__(16)
 	];
 
 	/**
@@ -13549,14 +13555,14 @@
 
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * URL Template (RFC 6570) Transform.
 	 */
 
-	var UrlTemplate = __webpack_require__(12);
+	var UrlTemplate = __webpack_require__(13);
 
 	module.exports = function (options) {
 
@@ -13571,7 +13577,7 @@
 
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports) {
 
 	/**
@@ -13727,14 +13733,14 @@
 
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Legacy Transform.
 	 */
 
-	var _ = __webpack_require__(9);
+	var _ = __webpack_require__(10);
 
 	module.exports = function (options, next) {
 
@@ -13779,14 +13785,14 @@
 
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Query Parameter Transform.
 	 */
 
-	var _ = __webpack_require__(9);
+	var _ = __webpack_require__(10);
 
 	module.exports = function (options, next) {
 
@@ -13809,14 +13815,14 @@
 
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Root Prefix Transform.
 	 */
 
-	var _ = __webpack_require__(9);
+	var _ = __webpack_require__(10);
 
 	module.exports = function (options, next) {
 
@@ -13831,17 +13837,17 @@
 
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for sending network requests.
 	 */
 
-	var _ = __webpack_require__(9);
-	var Client = __webpack_require__(17);
-	var Promise = __webpack_require__(18);
-	var interceptor = __webpack_require__(21);
+	var _ = __webpack_require__(10);
+	var Client = __webpack_require__(18);
+	var Promise = __webpack_require__(19);
+	var interceptor = __webpack_require__(22);
 	var jsonType = {'Content-Type': 'application/json'};
 
 	function Http(url, options) {
@@ -13894,13 +13900,13 @@
 	};
 
 	Http.interceptors = [
-	    __webpack_require__(22),
 	    __webpack_require__(23),
 	    __webpack_require__(24),
-	    __webpack_require__(26),
+	    __webpack_require__(25),
 	    __webpack_require__(27),
 	    __webpack_require__(28),
-	    __webpack_require__(29)
+	    __webpack_require__(29),
+	    __webpack_require__(30)
 	];
 
 	Http.headers = {
@@ -13935,16 +13941,16 @@
 
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Base client.
 	 */
 
-	var _ = __webpack_require__(9);
-	var Promise = __webpack_require__(18);
-	var xhrClient = __webpack_require__(20);
+	var _ = __webpack_require__(10);
+	var Promise = __webpack_require__(19);
+	var xhrClient = __webpack_require__(21);
 
 	module.exports = function (request) {
 
@@ -14006,15 +14012,15 @@
 
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promise adapter.
 	 */
 
-	var _ = __webpack_require__(9);
-	var PromiseObj = window.Promise || __webpack_require__(19);
+	var _ = __webpack_require__(10);
+	var PromiseObj = window.Promise || __webpack_require__(20);
 
 	function Promise(executor, context) {
 
@@ -14121,14 +14127,14 @@
 
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promises/A+ polyfill v1.1.4 (https://github.com/bramstein/promis)
 	 */
 
-	var _ = __webpack_require__(9);
+	var _ = __webpack_require__(10);
 
 	var RESOLVED = 0;
 	var REJECTED = 1;
@@ -14306,15 +14312,15 @@
 
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XMLHttp client.
 	 */
 
-	var _ = __webpack_require__(9);
-	var Promise = __webpack_require__(18);
+	var _ = __webpack_require__(10);
+	var Promise = __webpack_require__(19);
 
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -14362,15 +14368,15 @@
 
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Interceptor factory.
 	 */
 
-	var _ = __webpack_require__(9);
-	var Promise = __webpack_require__(18);
+	var _ = __webpack_require__(10);
+	var Promise = __webpack_require__(19);
 
 	module.exports = function (handler, vm) {
 
@@ -14413,14 +14419,14 @@
 
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Before Interceptor.
 	 */
 
-	var _ = __webpack_require__(9);
+	var _ = __webpack_require__(10);
 
 	module.exports = {
 
@@ -14437,7 +14443,7 @@
 
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports) {
 
 	/**
@@ -14473,14 +14479,14 @@
 
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP Interceptor.
 	 */
 
-	var jsonpClient = __webpack_require__(25);
+	var jsonpClient = __webpack_require__(26);
 
 	module.exports = {
 
@@ -14497,15 +14503,15 @@
 
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP client.
 	 */
 
-	var _ = __webpack_require__(9);
-	var Promise = __webpack_require__(18);
+	var _ = __webpack_require__(10);
+	var Promise = __webpack_require__(19);
 
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -14551,7 +14557,7 @@
 
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports) {
 
 	/**
@@ -14574,14 +14580,14 @@
 
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Mime Interceptor.
 	 */
 
-	var _ = __webpack_require__(9);
+	var _ = __webpack_require__(10);
 
 	module.exports = {
 
@@ -14616,14 +14622,14 @@
 
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Header Interceptor.
 	 */
 
-	var _ = __webpack_require__(9);
+	var _ = __webpack_require__(10);
 
 	module.exports = {
 
@@ -14648,15 +14654,15 @@
 
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * CORS Interceptor.
 	 */
 
-	var _ = __webpack_require__(9);
-	var xdrClient = __webpack_require__(30);
+	var _ = __webpack_require__(10);
+	var xdrClient = __webpack_require__(31);
 	var xhrCors = 'withCredentials' in new XMLHttpRequest();
 	var originUrl = _.url.parse(location.href);
 
@@ -14691,15 +14697,15 @@
 
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XDomain client (Internet Explorer).
 	 */
 
-	var _ = __webpack_require__(9);
-	var Promise = __webpack_require__(18);
+	var _ = __webpack_require__(10);
+	var Promise = __webpack_require__(19);
 
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -14734,14 +14740,14 @@
 
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for interacting with RESTful services.
 	 */
 
-	var _ = __webpack_require__(9);
+	var _ = __webpack_require__(10);
 
 	function Resource(url, params, actions, options) {
 
@@ -14850,16 +14856,16 @@
 
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(33)
+	__vue_script__ = __webpack_require__(34)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src\\components\\header.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(34)
+	__vue_template__ = __webpack_require__(35)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -14878,7 +14884,7 @@
 	})()}
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -14907,7 +14913,7 @@
 	};
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<nav class=\"navbar navbar-default\" role=\"navigation\">\n    <div class=\"container-fluid\">\n        <!-- Brand and toggle get grouped for better mobile display -->\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-ex1-collapse\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"#\">{{brand}}</a>\n        </div>\n\n        <!-- Collect the nav links, forms, and other content for toggling -->\n        <div class=\"collapse navbar-collapse navbar-ex1-collapse\">\n            <ul class=\"nav navbar-nav\">\n                <li class=\"active\"><a v-link=\"{ path: '/foo' }\">Angular</a></li>\n                <li><a v-link=\"{ path: '/bar' }\">Vue</a></li>\n            </ul>\n            <form class=\"navbar-form navbar-left\" role=\"search\">\n                <div class=\"form-group\">\n                    <input type=\"text\" class=\"form-control\" placeholder=\"Search\">\n                </div>\n                <button type=\"submit\" class=\"btn btn-default\">Submit</button>\n            </form>\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li><a href=\"#\">{{link1}}</a></li>\n                <li class=\"dropdown\">\n                    <a href=\"{{linkSub.url}}\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{linkSub.title}} <b class=\"caret\"></b></a>\n                    <ul class=\"dropdown-menu\">\n                        <li v-for=\"item in linkSub.list\"><a href=\"{{item.url}}\">{{item.title}}</a></li>\n                    </ul>\n                </li>\n            </ul>\n        </div><!-- /.navbar-collapse -->\n    </div>\n</nav>\n";
