@@ -1,6 +1,6 @@
 ## sellerpc demo
 
-项目开发基于vue和webpack，依赖`node`环境，因此需要[安装node]()
+项目开发基于[vue](http://vuejs.org.cn/)和[webpack](https://webpack.github.io/)，依赖`node`环境，因此需要[安装node](https://nodejs.org/en/)
 
 ### 开发环境
 
@@ -12,7 +12,7 @@ node安装完成后逐步执行下面命令
 
 **安装webpack和插件**
 
->>cnpm install --save-dev style-loader less-loader file-loader url-loader vue-loader 
+>cnpm install --save-dev style-loader less-loader file-loader url-loader vue-loader 
 
 **安装vue和插件**
 
