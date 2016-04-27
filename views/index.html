@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Document</title>
+</head>
+
+<body id="main">
+    <my-header></my-header>
+    <section id="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <h1>左侧导航</h1>
+                    <ul class="list-group">
+                        <li class="list-group-item">Item 1</li>
+                        <li class="list-group-item">Item 2</li>
+                        <li class="list-group-item">Item 3</li>
+                        <li class="list-group-item">Item 1</li>
+                        <li class="list-group-item">Item 2</li>
+                        <li class="list-group-item">Item 3</li>
+                    </ul>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <div id="app">
+                        <h1>Hello， 卖家中心！</h1>
+                        <!-- route outlet -->
+                        <router-view></router-view>
+                    </div>
+
+                    <table class="table table-hover" id="boot">
+                        <thead>
+                            <tr>
+                                <th v-for="title in titles">{{title}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="item in items">
+                                <td v-for="i in item">{{i}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ul class="pager">
+                        <li><a href="#">Previous</a></li>
+                        <li><a href="#">Next</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="text-center">copyright@美啦<i class="fa fa-wechat" aria-hidden="true"></i></div>
+    </footer>
+</body>
+<script src="../resource/index.js"></script>
+</html>
