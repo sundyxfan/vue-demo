@@ -42,10 +42,10 @@
     module.exports = {
         data: function() {
             return {
-                brand: '卖家中心123',
+                brand: '卖家中心 -- Vue',
                 link1: 'Bootstrap',
                 linkSub: {
-                    title: 'LinkSub',
+                    title: 'LinkSub1111',
                     url: '#',
                     list: [
                         {

@@ -12,10 +12,14 @@ Vue.use(VueResource);
 
 // 调用组件
 var header = require('../components/header.vue');
-Vue.component('my-header', header)
+Vue.component('my-header', header);
 
 
-// ajax 示例
+var comps = require('../components/compB.vue');
+Vue.component('comps', comps);
+
+
+// 绑定 示例
 new Vue({
     el: '#boot',
     data: function() {
@@ -35,7 +39,7 @@ new Vue({
 // 定义组件
 var Foo = Vue.extend({
     template: '<div @click="add" :class="className">Foo component</div><span>{{name}}</span>',
-    props: ['name', 'className'],
+    props: ['name', 'className'], //
     ready: function() {
         // GET request
         this.$http.get('../../json/index.json').then(function(response) {
@@ -57,7 +61,8 @@ var Foo = Vue.extend({
 })
 
 var Bar = Vue.extend({
-    template: '<p class="c-red">This is template bar!</p>'
+    template: '<input v-model="input"/><span class="cor-red">{{input||"双向数据绑定"}}</span>',
+    props: ['input']
 })
 
 // The router needs a root component to render.

@@ -7,6 +7,7 @@
 </head>
 
 <body id="main">
+    <!-- 顶部导航组件 -->
     <my-header></my-header>
     <section id="content">
         <div class="container-fluid">
@@ -25,10 +26,14 @@
                 <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
                     <div id="app">
                         <h1>Hello， 卖家中心！</h1>
-                        <!-- route outlet -->
+                        <!-- 路由视图 -->
                         <router-view></router-view>
                     </div>
 
+                    <!-- 多组件复用 -->
+                    <comps></comps>
+
+                    <!-- 数据填充模板 -->
                     <table class="table table-hover" id="boot">
                         <thead>
                             <tr>
