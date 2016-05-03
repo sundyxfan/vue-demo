@@ -4,6 +4,8 @@
 
 ### 演示
 
+-- [online demo](https://jsfiddle.net/La6jneve/1/)
+
 node安装完成后，打开`cmd`进入当前文件所在目录后，逐步执行下面命令
 
 1.*将npm下载地址指向淘宝镜像*

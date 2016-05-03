@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" class="nojs">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue demos</title>
+    <style type="text/css">
+    body {
+        padding: 20px;
+    }
+    .nojs {
+        display: none;
+    }
+
+    h1 {
+        background-color: #41B883;
+        padding: 10px 15px;
+    }
+
+    h1 a {
+        color: blue;
+    }
+
+    h2.title {
+        margin-top: 10px;
+        background-image: -webkit-linear-gradient(left, #ccc, #fff, #ccc);
+        background-image: -moz-linear-gradient(left, #ccc, #fff, #ccc);
+        background-image: -o-linear-gradient(left, #ccc, #fff, #ccc);
+        background-image: linear-gradient(left, #ccc, #fff, #ccc);
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .show {
+        display: block;
+    }
+
+    .fade-transition {
+        transition: opacity .3s ease;
+    }
+
+    .fade-enter,
+    .fade-leave {
+        opacity: 0;
+    }
+    </style>
+</head>
+
+<body>
+    <h1><a href="http://vuejs.org.cn/guide/" target="_blank">Vue 官网演示</a></h1>
+    <h2 class="title">双向绑定&条件渲染&指令(number&v-if)</h2>
+    <div id="app">
+        {{{ message }}}
+        <br>
+        <input type="text" v-model="message" number>
+        <button @click="reverse">reverse message</button>
+        <template v-if="ok">
+            <h1>指令和条件渲染</h1>
+            <p>Paragraph 1</p>
+            <p>Paragraph 2</p>
+        </template>
+    </div>
+    <h2 class="title">事件处理&键盘事件</h2>
+    <div id="demo2">
+        <input type="text" @keyup.enter="addTodo" v-model="newTodo">
+        <ul>
+            <li v-for="todo in todos">
+                <span>{{todo.text}}</span>
+                <button @click="removeTodo($index)">X</button>
+            </li>
+        </ul>
+    </div>
+    <h2 class="title">自定义组件&生命周期</h2>
+    <my-comp></my-comp>
+    <h2 class="title">多组件组合复用&组件间通信(静态)</h2>
+    <comps msg2="1" msg1="hello"></comps>
+    <h2 class="title">组件间通信(动态)</h2>
+    <div>
+        <input type="text" v-model="parentMsg" />
+        <br />
+        <child :my-message.sync="parentMsg"></child>
+    </div>
+    <h2 class="title">组件切换</h2>
+    <component :is="currentView" transition="fade" transition-mode="out-in"></component>
+    <button @click="change">change view</button>
+    <div id="example1">{{msg}}</div>
+    <script src="https://cdn.jsdelivr.net/vue/latest/vue.js"></script>
+    <script type="text/javascript">
+    // avoiding-dom-flickering(fouc)
+    window.addEventListener('DOMContentLoaded', function() {
+        document.documentElement.className = document.documentElement.className.replace('nojs','js');
+    });
+    (function(win) {
+
+        'use strict';
+
+        // 双向绑定&条件渲染&指令(number&v-if)
+        var v1 = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue.js!',
+                ok: true
+            },
+            methods: {
+                reverse: function() {
+                    this.message = this.message.split('').reverse().join('');
+                }
+            }
+        });
+
+        // js调用方法
+        v1.reverse();
+
+        // 事件处理&键盘事件
+        var v2 = new Vue({
+            el: '#demo2',
+            data: function() {
+                return {
+                    newTodo: '',
+                    todos: [{
+                        text: 'hello world'
+                    }, {
+                        text: 'hello vue'
+                    }, {
+                        text: 'hello angularjs'
+                    }]
+                }
+            },
+            methods: {
+                removeTodo: function(i) {
+                    this.todos.splice(i, 1);
+                },
+                addTodo: function(val) {
+                    var txt = this.newTodo.trim() || val;
+                    if (!!txt) {
+                        this.todos.push({
+                            text: txt
+                        });
+                        this.todos.newTodo = '';
+                    }
+                }
+            }
+        });
+
+        v2.addTodo('add by javascript');
+
+        // 自定义组件&生命周期
+        var myComponent = Vue.extend({
+            el: function() {
+                return 'my-comp';
+            },
+            template: '<p v-show="ishidden">show or not {{msg|capitalize}}{{{htm}}}</p>',
+            data: function() {
+                return {
+                    msg: 'hello',
+                    ishidden: true,
+                    htm: '<h2>vue demo</h2>'
+                };
+            },
+            methods: {
+                show: function() {
+                    alert(this.msg);
+                },
+                alertMsg: function(txt) {
+                    if (!!txt) {
+                        this.msg = txt;
+                        this.ishidden = true;
+                        this.show.call(this);
+                        txt = null;
+                    }
+
+                }
+            },
+            created: function() {
+                this.msg = 'initial';
+                // this.show();
+            },
+            compile: function() {
+                this.msg = 'compiled';
+            }
+        });
+
+        // 创建实例
+        var mc = new myComponent();
+        // mc.show();
+        // mc.alertMsg('alert message');
+
+        // 多组件组合复用&组件间通信
+        var compA = Vue.extend({
+            template: '<h2 msg="abc">comp A , say {{msg1}}</h2>',
+            data: function() {
+                return {
+                    msg1: 'vue'
+                };
+            }
+        });
+
+        var compB = Vue.extend({
+            template: '<h2>comp B , say {{msg2}}</h2>',
+            data: function() {
+                return {
+                    msg2: 'angular'
+                };
+            }
+        });
+
+        var comps = Vue.extend({
+            template: '<div>{{msg1}}{{typeof msg2}}<a-a></a-a><b-b></b-b></div>',
+            props: ['msg1', 'msg2'],
+            components: {
+                'a-a': compA,
+                'b-b': compB
+            }
+        });
+        Vue.component('comps', comps);
+
+        // 组件间通信(动态)
+        var cc = Vue.extend({
+            props: {
+                'myMessage': String
+            },
+            template: 'Hello <span>{{ myMessage}}</span><br/><input v-model="myMessage"/>',
+            methods: {
+                setMsg: function(msg) {
+                    this.myMessage = msg;
+                }
+            }
+        });
+        Vue.component('child', cc);
+
+        // 组件切换
+        var vm = new Vue({
+            el: 'body',
+            data: function() {
+                return {
+                    parentMsg: '12',
+                    currentView: 'home'
+                }
+            },
+            components: {
+                home: compA,
+                posts: compB
+            },
+            methods: {
+                change: function() {
+                    this.currentView = this.currentView == 'home' ? 'posts' : 'home';
+                }
+            }
+        });
+    })(window);
+    </script>
+</body>
+
+</html>

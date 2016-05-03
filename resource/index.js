@@ -25247,7 +25247,7 @@
 /* 53 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<div class=\"compA\" _v-2ef801a0=\"\">\n    <input class=\"ip\" type=\"text\" v-model=\"name\" _v-2ef801a0=\"\">\n    <h2 _v-2ef801a0=\"\">component A, say hello to {{name}}</h2>\n</div>\n";
+	module.exports = "\n<div class=\"compA\" _v-2ef801a0=\"\">\n    <input class=\"ip\" type=\"text\" v-model=\"name\" _v-2ef801a0=\"\">\n    <h2 _v-2ef801a0=\"\">component A, say hello to  asda {{name}}</h2>\n</div>\n";
 
 /***/ },
 /* 54 */
