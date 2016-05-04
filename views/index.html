@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="nojs">
 
 <head>
     <meta charset="UTF-8">
     <title>Vue Document</title>
+    <style type="text/css">
+    .nojs {
+        display: none;
+    }
+    </style>
 </head>
 
 <body id="main">
@@ -29,10 +34,8 @@
                         <!-- 路由视图 -->
                         <router-view></router-view>
                     </div>
-
                     <!-- 多组件复用 -->
                     <comps></comps>
-
                     <!-- 数据填充模板 -->
                     <table class="table table-hover" id="boot">
                         <thead>
@@ -58,5 +61,11 @@
         <div class="text-center">copyright@美啦<i class="fa fa-wechat" aria-hidden="true"></i></div>
     </footer>
 </body>
+<script type="text/javascript">
+window.addEventListener('DOMContentLoaded', function() {
+    document.documentElement.className = document.documentElement.className.replace('nojs', 'js');
+});
+</script>
 <script src="../resource/index.js"></script>
+
 </html>

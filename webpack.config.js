@@ -6,7 +6,7 @@ module.exports = {
         index: './src/js/index.js'
     },
     output: {
-        path: __dirname,
+        path: path.resolve(__dirname, 'resource'),
         filename: '[name].js'
     },
     module: {

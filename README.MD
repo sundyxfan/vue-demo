@@ -39,6 +39,7 @@ gulp任务会开启对src目录下所有文件的监控，如果有修改会将�
 ### issues
 
 +   [how-to-integrate-bootstrap-to-vue-js](http://forum.vuejs.org/topic/1403/how-to-integrate-bootstrap-to-vue-js/4)
++   [bootstrap package for webpack](https://github.com/gowravshekar/bootstrap-webpack)
 
 
 

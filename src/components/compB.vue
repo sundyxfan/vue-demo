@@ -29,7 +29,7 @@
     </div>
     <div id="img-text" class="white-popup mfp-with-anim mfp-hide">
         <h2>hello magnific popup</h2>
-        <p>yes, you can use thirt party plugins here</p>
+        <p>yes, you can use third party plugins here</p>
     </div>
 </template>
 
