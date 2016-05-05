@@ -1,13 +1,16 @@
 var path = require('path');
+var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     entry: {
-        index: './src/js/index.js'
+        index: [
+            './src/js/index.js'
+        ]
     },
     output: {
-        path: path.resolve(__dirname, 'resource'),
-        filename: '[name].js'
+        path: path.join(__dirname, 'resource'),
+        filename: '[name].js',
     },
     module: {
         loaders: [{
@@ -42,5 +45,6 @@ module.exports = {
             loader: "url?limit=10000&mimetype=image/svg+xml"
         }]
     },
-    plugins: []
+    plugins: [
+    ]
 };

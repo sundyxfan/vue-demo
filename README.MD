@@ -40,6 +40,8 @@ gulp任务会开启对src目录下所有文件的监控，如果有修改会将�
 
 +   [how-to-integrate-bootstrap-to-vue-js](http://forum.vuejs.org/topic/1403/how-to-integrate-bootstrap-to-vue-js/4)
 +   [bootstrap package for webpack](https://github.com/gowravshekar/bootstrap-webpack)
++   [npm ERR! Please try running this command again as root/Administrator](http://stackoverflow.com/questions/16151018/npm-throws-error-without-sudo)
++   [fixing-npm-permissions](https://docs.npmjs.com/getting-started/fixing-npm-permissions)
 
 
 

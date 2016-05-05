@@ -2,8 +2,9 @@ var gulp = require('gulp'),
     cached = require('gulp-cached'),
     del = require('del'),
     path = require('path'),
+    connect = require('gulp-connect'),
     watch = require('gulp-watch'),
-    jshint = require('jshint'),
+    jshint = require('gulp-jshint'),
     webpack = require('gulp-webpack'),
     beautify = require('gulp-beautify'),
     spritesmith = require('gulp.spritesmith'),
@@ -213,7 +214,24 @@ gulp.task('rev', ['rev-js', 'rev-css'], function() {
         .pipe(gulp.dest(config.assets + 'app/'));
 });
 
+// connect
+gulp.task('connect', function() {
+    // Server started http://localhost:8080
+    // connect.server();
 
+    // liveload
+    connect.server({
+        root: ['./'],
+        port: 8080,
+        liveload: true
+    });
+});
+
+// reload
+gulp.task('reload', ['webpack'], function() {
+    gulp.src('./views/*.html')
+        .pipe(connect.reload());
+});
 
 // clean
 gulp.task('clean', function(cb) {
@@ -229,7 +247,8 @@ gulp.task('webpack-build', function() {
 
 gulp.task('webpack', ['webpack-build'], function() {
     gulp.watch([config.src + '**/*'], ['webpack-build']);
+    gulp.watch([config.src + '**/*'], ['reload']);
 })
 
 // default
-gulp.task('default', ['webpack']);
+gulp.task('default', ['webpack', 'connect']);
