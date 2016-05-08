@@ -20,8 +20,9 @@ Vue.component('comps', comps);
 
 
 // 绑定 示例
-new Vue({
+var  boot = new Vue({
     el: '#boot',
+    template: '<a @click="a"></a>',
     data: function() {
         return {
             titles: ['title', 'name', 'mininame'],
@@ -31,19 +32,30 @@ new Vue({
                 ['angular', 'vue', 'bootstrap']
             ]
         };
+    },
+    methods: {
+        a: function() {}
     }
-})
+});
+
+boot.a();
 
 
 
 // 定义组件
 var Foo = Vue.extend({
-    template: '<div @click="add" :class="className">Foo component</div><span>{{name}}</span>',
+    template: '<div @click="add" :class="className">Foo component <span>{{name}}</span></div>',
     props: ['name', 'className'], //
     ready: function() {
         // GET request
-        this.$http.get('../../json/index.json').then(function(response) {
+        var url = 'http://localhost:8080/ptuan/service/gettuaninfo.json?tuanNo=PT160330143246001006&time=';
+        this.$http.get(url).then(function(response) {
             // 模拟ajax，这里不会执行
+            this.$set('name', response.data.data.pageSize)
+            this.$set('className', {
+                'color-red': true
+            });
+            console.log(response);console.log(response);
         }, function(response) {
             // error callback
             this.$set('name', ['an12332ular', 'vue123'])

@@ -2,7 +2,6 @@ var gulp = require('gulp'),
     cached = require('gulp-cached'),
     del = require('del'),
     path = require('path'),
-    connect = require('gulp-connect'),
     watch = require('gulp-watch'),
     jshint = require('gulp-jshint'),
     webpack = require('gulp-webpack'),
@@ -11,11 +10,15 @@ var gulp = require('gulp'),
     gutil = require('gulp-util'), // debug tasks
     rev = require('gulp-rev'), // version control
     revReplace = require('gulp-rev-replace');
+    connect = require('gulp-connect');
+
+
 
 var config = {
     base: './', // 当前文件所在目录
     src: './src/', // 所有开发资源目录
     dist: './resource/', // 开发环境生成的静态资源--dev版本
+	html: './views/',
     splitting: './src/splitting/' // 静态资源版本号map
 };
 
@@ -214,24 +217,7 @@ gulp.task('rev', ['rev-js', 'rev-css'], function() {
         .pipe(gulp.dest(config.assets + 'app/'));
 });
 
-// connect
-gulp.task('connect', function() {
-    // Server started http://localhost:8080
-    // connect.server();
 
-    // liveload
-    connect.server({
-        root: ['./'],
-        port: 8080,
-        liveload: true
-    });
-});
-
-// reload
-gulp.task('reload', ['webpack'], function() {
-    gulp.src('./views/*.html')
-        .pipe(connect.reload());
-});
 
 // clean
 gulp.task('clean', function(cb) {
@@ -245,10 +231,22 @@ gulp.task('webpack-build', function() {
         .pipe(gulp.dest(config.dist));
 });
 
+gulp.task('reload', ['webpack-build'], function() {
+    return gulp.src(config.html + '/*.html')
+        .pipe(connect.reload());
+});
+
 gulp.task('webpack', ['webpack-build'], function() {
-    gulp.watch([config.src + '**/*'], ['webpack-build']);
     gulp.watch([config.src + '**/*'], ['reload']);
 })
 
+gulp.task('connect', function() {
+  connect.server({
+	  //root: ['views'],
+	  port: 8899,
+	  host: '172.18.8.104',
+	  livereload: true
+  });
+});
 // default
-gulp.task('default', ['webpack', 'connect']);
+gulp.task('default', ['connect','webpack']);

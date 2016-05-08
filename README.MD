@@ -42,6 +42,7 @@ gulp任务会开启对src目录下所有文件的监控，如果有修改会将�
 +   [bootstrap package for webpack](https://github.com/gowravshekar/bootstrap-webpack)
 +   [npm ERR! Please try running this command again as root/Administrator](http://stackoverflow.com/questions/16151018/npm-throws-error-without-sudo)
 +   [fixing-npm-permissions](https://docs.npmjs.com/getting-started/fixing-npm-permissions)
++   [nodejs-error-installing-with-npm](https://github.com/nodejs/node-gyp)
 
 
 

@@ -100,7 +100,7 @@
         var v1 = new Vue({
             el: '#app',
             data: {
-                message: 'Hello Vue.js!',
+                message: '123123Hello123412 Vue.js!',
                 ok: true
             },
             methods: {
@@ -189,11 +189,16 @@
 
         // 多组件组合复用&组件间通信
         var compA = Vue.extend({
-            template: '<h2 msg="abc">comp A , say {{msg1}}</h2>',
+            template: '<h2 msg="abc" @click="doc">comp A , say {{msg1}}</h2>',
             data: function() {
                 return {
-                    msg1: 'vue'
+                    msg1: 'vue asdfas'
                 };
+            },
+            methods: {
+                doc: function() {
+                    alert('hello')
+                }
             }
         });
 

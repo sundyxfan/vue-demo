@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "./";
+/******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -91,12 +91,18 @@
 
 	// 定义组件
 	var Foo = Vue.extend({
-	    template: '<div @click="add" :class="className">Foo component</div><span>{{name}}</span>',
+	    template: '<div @click="add" :class="className">Foo component <span>{{name}}</span></div>',
 	    props: ['name', 'className'], //
 	    ready: function() {
 	        // GET request
-	        this.$http.get('../../json/index.json').then(function(response) {
+	        var url = 'http://localhost:8080/ptuan/service/gettuaninfo.json?tuanNo=PT160330143246001006&time=';
+	        this.$http.get(url).then(function(response) {
 	            // 模拟ajax，这里不会执行
+	            this.$set('name', response.data.data.pageSize)
+	            this.$set('className', {
+	                'color-red': true
+	            });
+	            console.log(response);console.log(response);
 	        }, function(response) {
 	            // error callback
 	            this.$set('name', ['an12332ular', 'vue123'])
