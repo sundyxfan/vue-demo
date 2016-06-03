@@ -8,6 +8,7 @@
     body {
         padding: 20px;
     }
+
     .nojs {
         display: none;
     }
@@ -44,6 +45,14 @@
     .fade-enter,
     .fade-leave {
         opacity: 0;
+    }
+
+    .nav ul,
+    .nav ol {
+        list-style-type: none;
+    }
+    .nav li {
+        margin: 6px;
     }
     </style>
 </head>
@@ -86,15 +95,46 @@
     <component :is="currentView" transition="fade" transition-mode="out-in"></component>
     <button @click="change">change view</button>
     <div id="example1">{{msg}}</div>
+    <h2 class="title">过滤器</h2>
+    <div class="table-responsive" id="filter-demo">
+        <div class="input-group">
+            <input type="text" name="" id="input" class="form-control" value="" required="required" v-model="name">
+            <select name="" id="status" class="form-control" required="required" v-model="status">
+                <option value="sale">在售</option>
+                <option value="soldout">售罄</option>
+                <option value="offline">下架</option>
+                <option value="all" selected>全部</option>
+                <option value="drafts">草稿箱</option>
+            </select>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>商品名称</th>
+                    <th>规格</th>
+                    <th>型号</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in items | filterBy name in 'name' | filterBy status in 'type'">
+                    <td>{{item.name}}</td>
+                    <td>{{item.spec}}</td>
+                    <td>{{item.type}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <script src="https://cdn.jsdelivr.net/vue/latest/vue.js"></script>
     <script type="text/javascript">
     // avoiding-dom-flickering(fouc)
     window.addEventListener('DOMContentLoaded', function() {
-        document.documentElement.className = document.documentElement.className.replace('nojs','js');
+        document.documentElement.className = document.documentElement.className.replace('nojs', 'js');
     });
     (function(win) {
 
         'use strict';
+
+        Vue.config.debug = true;
 
         // 双向绑定&条件渲染&指令(number&v-if)
         var v1 = new Vue({
@@ -110,6 +150,7 @@
             }
         });
 
+        v1.$set('message', '123412');
         // js调用方法
         v1.reverse();
 
@@ -187,6 +228,33 @@
         // mc.show();
         // mc.alertMsg('alert message');
 
+        // 过滤器
+        var filter = new Vue({
+            el: '#filter-demo',
+            data: function() {
+                return {
+                    name: '',
+                    status: '',
+                    items: [{
+                        name: 'test1',
+                        spec: 'a003',
+                        type: 'drafts'
+                    }, {
+                        name: 'test3',
+                        spec: 'a001',
+                        type: 'offline'
+                    }, {
+                        name: 'test2',
+                        spec: 'a004',
+                        type: 'soldout'
+                    }, {
+                        name: 'test4',
+                        spec: 'a003',
+                        type: '全部'
+                    }]
+                };
+            }
+        });
         // 多组件组合复用&组件间通信
         var compA = Vue.extend({
             template: '<h2 msg="abc" @click="doc">comp A , say {{msg1}}</h2>',
@@ -254,6 +322,8 @@
                 }
             }
         });
+
+
     })(window);
     </script>
 </body>
