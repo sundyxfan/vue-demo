@@ -1,6 +1,11 @@
 // 引入样式文件
 var style = require('../less/index.less');
 
+// commonJs 依赖
+var jQuery = require('jquery');
+window.jQuery = jQuery;
+var bot = require('bootstrap');
+
 // 引入依赖
 var Vue = require('vue');
 var VueRouter = require('vue-router');

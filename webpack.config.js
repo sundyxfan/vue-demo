@@ -46,14 +46,14 @@ module.exports = {
         }]
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            },
-            output: {
-                comments: false
-            }
-        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {
+        //         warnings: false
+        //     },
+        //     output: {
+        //         comments: false
+        //     }
+        // }),
         // new webpack.EnvironmentPlugin(["NODE_ENV"]),
         new webpack.BannerPlugin('created by jogiter in ' + new Date().toLocaleString(), {
 

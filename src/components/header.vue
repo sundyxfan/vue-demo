@@ -1,6 +1,6 @@
-<style type="text/css">
-    .nav img {
-        display: inline-block;
+<style type="text/css" scoped>
+    .navbar img {
+        display: inline-block !important;
         margin-right: 10px;
     }
 </style>
@@ -17,7 +17,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{{site.url}}">
-                    <img :src="{{site.logo}}" alt="Logo">
+                    <img :src="site.logo" alt="Logo">
                     {{site.name}}
                 </a>
             </div>
@@ -44,13 +44,15 @@
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form> -->
                 <ul class="nav navbar-nav navbar-right">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                        <img :src="{{userInfo.avatar}}" alt="用户头像">
-                        {{userInfo.name}}<span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li v-for="item in userInfo.subs"><a href="{{item.url}}">{{item.name}}</a></li>
-                    </ul>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <img :src="userInfo.avatar" alt="用户头像">
+                            {{userInfo.name}}<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li v-for="item in userInfo.subs"><a href="{{item.url}}">{{item.name}}</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div>
@@ -68,7 +70,7 @@
         data: function() {
             return {
                 site: {
-                    name: '卖家中心 -- Vue',
+                    name: '葡萄生活CMS',
                     logo: '../image/baby2.jpg',
                     url: '#'
                 },
