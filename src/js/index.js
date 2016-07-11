@@ -20,7 +20,7 @@ Vue.component('comps', comps);
 
 
 // 绑定 示例
-var  boot = new Vue({
+var boot = new Vue({
     el: '#boot',
     template: '<a @click="a"></a>',
     data: function() {
@@ -55,7 +55,8 @@ var Foo = Vue.extend({
             this.$set('className', {
                 'color-red': true
             });
-            console.log(response);console.log(response);
+            console.log(response);
+            console.log(response);
         }, function(response) {
             // error callback
             this.$set('name', ['an12332ular', 'vue123'])

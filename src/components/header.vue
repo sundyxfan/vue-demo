@@ -1,3 +1,10 @@
+<style type="text/css">
+    .nav img {
+        display: inline-block;
+        margin-right: 10px;
+    }
+</style>
+
 <template>
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
@@ -9,29 +16,41 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">{{brand}}</a>
+                <a class="navbar-brand" href="{{site.url}}">
+                    <img :src="{{site.logo}}" alt="Logo">
+                    {{site.name}}
+                </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a v-link="{ path: '/foo' }">Angular</a></li>
-                    <li><a v-link="{ path: '/bar' }">Vue</a></li>
+                    <li v-for="nav in navs">
+                        <template v-if="!!nav.subs.length">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button">{{nav.name}}<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li v-for="item in nav.subs"><a href="{{item.url}}">{{item.name}}</a></li>
+                            </ul>
+                        </template>
+                        <template v-else>
+                            <a href="{{nav.url}}">{{nav.name}}</a>
+                        </template>
+                    </li>
                 </ul>
-                <form class="navbar-form navbar-left" role="search">
+                <!-- <form class="navbar-form navbar-left" role="search">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search">
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
-                </form>
+                </form> -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">{{link1}}</a></li>
-                    <li class="dropdown">
-                        <a href="{{linkSub.url}}" class="dropdown-toggle" data-toggle="dropdown">{{linkSub.title}} <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li v-for="item in linkSub.list"><a href="{{item.url}}">{{item.title}}</a></li>
-                        </ul>
-                    </li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <img :src="{{userInfo.avatar}}" alt="用户头像">
+                        {{userInfo.name}}<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li v-for="item in userInfo.subs"><a href="{{item.url}}">{{item.name}}</a></li>
+                    </ul>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div>
@@ -39,31 +58,83 @@
 </template>
 
 <script type="text/javascript">
+    /**
+     * [exports description]
+     * @type {Object}
+     * 每个链接添加icon
+     * 页面切换导航，页面刷新，页面跳转等情况下导航激活状态的改变
+     */
     module.exports = {
         data: function() {
             return {
-                brand: '卖家中心 -- Vue',
-                link1: 'Bootstrap',
-                linkSub: {
-                    title: 'LinkSub1111',
-                    url: '#',
-                    list: [
+                site: {
+                    name: '卖家中心 -- Vue',
+                    logo: '../image/baby2.jpg',
+                    url: '#'
+                },
+                navs: [
+                    {
+                        name: '服务',
+                        url: '/service/',
+                        subs: [
+                            {
+                                name: '/话费',
+                                url: '/service/phone-fare/'
+                            },
+                            {
+                                name: '大保健',
+                                url: '/service/health-care/'
+                            }
+                        ]
+                    },
+                    {
+                        name: '商品',
+                        url: '/goods/',
+                        subs: [
+                            {
+                                name: '商品一',
+                                url: '/goods/one/'
+                            },
+                            {
+                                name: '商品二',
+                                url: '/goods/two/'
+                            }
+                        ]
+                    },
+                    {
+                        name: '商家',
+                        url: '/bussiness/',
+                        subs: [
+                            {
+                                name: '商家一',
+                                url: '/bussiness/one/'
+                            },
+                            {
+                                name: '商家二',
+                                url: '/bussiness/two/'
+                            }
+                        ]
+                    }
+                ],
+                userInfo: {
+                    name: 'userName',
+                    avatar: '../image/baby2.jpg',
+                    subs: [
                         {
-                            title: 'Action',
-                            url: '#'
+                            name: '账户管理',
+                            url: '/info/settings/'
                         },
                         {
-                            title: 'Another action',
-                            url: '#'
+                            name: '记录中心',
+                            url: '/history-info/'
                         },
                         {
-                            title: 'Something else here',
-                            url: '#'
+                            name: '退出',
+                            url: '/loginout/'
                         }
                     ]
                 }
             };
         }
     }
-
 </script>

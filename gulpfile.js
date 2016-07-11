@@ -9,7 +9,7 @@ var gulp = require('gulp'),
     spritesmith = require('gulp.spritesmith'),
     gutil = require('gulp-util'), // debug tasks
     rev = require('gulp-rev'), // version control
-    revReplace = require('gulp-rev-replace');
+    revReplace = require('gulp-rev-replace'),
     connect = require('gulp-connect');
 
 
@@ -18,7 +18,7 @@ var config = {
     base: './', // 当前文件所在目录
     src: './src/', // 所有开发资源目录
     dist: './resource/', // 开发环境生成的静态资源--dev版本
-	html: './views/',
+    html: './views/',
     splitting: './src/splitting/' // 静态资源版本号map
 };
 
@@ -241,12 +241,12 @@ gulp.task('webpack', ['webpack-build'], function() {
 })
 
 gulp.task('connect', function() {
-  connect.server({
-	  //root: ['views'],
-	  port: 8899,
-	  host: '172.18.8.104',
-	  livereload: true
-  });
+    connect.server({
+        //root: ['views'],
+        port: 8899,
+        // host: '172.18.8.104',
+        livereload: true
+    });
 });
 // default
-gulp.task('default', ['connect','webpack']);
+gulp.task('default', ['connect', 'webpack']);
