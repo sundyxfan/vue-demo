@@ -17,7 +17,7 @@ var gulp = require('gulp'),
 var config = {
     base: './', // 当前文件所在目录
     src: './src/', // 所有开发资源目录
-    dist: './resource/', // 开发环境生成的静态资源--dev版本
+    dist: './assets/', // 开发环境生成的静态资源--dev版本
     html: './views/',
     splitting: './src/splitting/' // 静态资源版本号map
 };
@@ -242,7 +242,7 @@ gulp.task('webpack', ['webpack-build'], function() {
 
 gulp.task('connect', function() {
     connect.server({
-        //root: ['views'],
+        root: ['./bower_components/', './', './assets/'],
         port: 8899,
         // host: '172.18.8.104',
         livereload: true

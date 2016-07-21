@@ -2,14 +2,17 @@ var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+var config = {
+    src: './src/lib/',
+    assets: 'assets'
+}
+
 module.exports = {
     entry: {
-        index: [
-            './src/js/index.js'
-        ]
+        index: path.join(__dirname, config.src, './index')
     },
     output: {
-        path: path.join(__dirname, 'resource'),
+        path: path.join(__dirname, 'assets/'),
         filename: '[name].js',
     },
     module: {
@@ -58,6 +61,10 @@ module.exports = {
         new webpack.BannerPlugin('created by jogiter in ' + new Date().toLocaleString(), {
 
         }),
-
+        new webpack.optimize.CommonsChunkPlugin('common', 'common.js'),
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: 'jquery'
+        })
     ]
 };
