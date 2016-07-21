@@ -31,12 +31,4 @@ router.map({
     }
 });
 
-router.start(App, '#app');
-
-new Vue({
-    el: 'body',
-    components: {
-        'app-header': header,
-        'app-footer': footer
-    }
-});
+router.start(App, 'body');
