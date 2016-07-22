@@ -1,10 +1,12 @@
 <style type="text/css">
-
+    header {
+        height: 70px;
+    }
 </style>
 
 <template>
     <header>
-        <nav class="navbar navbar-default" role="navigation">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -21,7 +23,7 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a v-link="{name: 'logo'}">logo</a></li>
-                        <li><a href="#">Link</a></li>
+                        <li><a v-link="{name: 'test'}">Test</a></li>
                     </ul>
                     <form class="navbar-form navbar-left" role="search">
                         <div class="form-group">
@@ -48,6 +50,23 @@
 </template>
 
 <script type="text/javascript">
+    var info = 'none';
+
     module.exports = {
+        data: function() {
+            return {
+                info: info
+            };
+        },
+        ready: function() {
+            var _this = this;
+            setTimeout(function() {
+                _this.info = {
+                    name: 'component a',
+                    asyn: true
+                };
+            }, 1000);
+        }
     };
+
 </script>

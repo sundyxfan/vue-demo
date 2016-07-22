@@ -1,5 +1,7 @@
 var css = require('../../bower_components/bootstrap/dist/css/bootstrap.min.css');
-var $ = require('jquery');
+// var bootstrap = require(['../../bower_components/jquery/dist/jquery.min.js'], function($) {
+//     require('../../bower_components/bootstrap/dist/js/bootstrap.min.js');
+// });
 
 var Vue = require('vue'),
     VueRouter = require('vue-router'),
@@ -18,16 +20,28 @@ var header = require('../component/header.vue'),
 
 
 var App = Vue.extend({}),
-    router = new VueRouter();
+    router = new VueRouter({
+        saveScrollPosition: true
+    });
 
 router.map({
     '/': {
         name: 'index',
-        component: index
+        component: function(resolve) {
+            require(['../component/index.vue'], resolve);
+        }
     },
     '/logo': {
         name: 'logo',
-        component: logo
+        component: function(resolve) {
+            require(['../component/logo.vue'], resolve);
+        }
+    },
+    'test': {
+        name: 'test',
+        component: function(resolve) {
+            require(['../component/test.vue'], resolve);
+        }
     }
 });
 
